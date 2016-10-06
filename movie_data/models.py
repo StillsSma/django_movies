@@ -1,0 +1,43 @@
+from django.db import models
+
+# Create your models here.
+
+class Movies(models.Model):
+    movideid = models.IntegerField(primary_key=True)
+    movie_title = models.CharField(max_length=100)
+    release_dte = models.CharField(max_length=11)
+    videorelease_dte = models.CharField(max_length=10)
+    IMDbURL = models.CharField(max_length=150)
+    unknown = models.BooleanField()
+    action = models.BooleanField()
+    adventure = models.BooleanField()
+    animation = models.BooleanField()
+    children = models.BooleanField()
+    comedy = models.BooleanField()
+    crime = models.BooleanField()
+    documentary = models.BooleanField()
+    drama = models.BooleanField()
+    fantasy = models.BooleanField()
+    film_Noir = models.BooleanField()
+    horror = models.BooleanField()
+    musical = models.BooleanField()
+    mystery = models.BooleanField()
+    romance = models.BooleanField()
+    sciFi = models.BooleanField()
+    thriller = models.BooleanField()
+    war = models.BooleanField()
+    western = models.BooleanField()
+
+class Rater(models.Model):
+    raterid = models.IntegerField(primary_key=True)
+    age = models.IntegerField()
+    gender = models.CharField(max_length=1)
+    occupation = models.CharField(max_length=20)
+    zipcode = models.CharField(max_length=10)
+
+
+class Ratings(models.Model):
+    rater = models.ForeignKey('Rater', null=True)
+    movie = models.ForeignKey('Movies', null=True)
+    rating = models.IntegerField()
+    timestmp = models.IntegerField()
